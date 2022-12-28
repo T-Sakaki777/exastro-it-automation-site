@@ -1,5 +1,7 @@
 {
 	"name": "exastro-it-automation-site",
+	"containerUser": "sphinx",
+	"updateRemoteUserUID": true,
 	"build": {
 		"dockerfile": "Dockerfile",
 		"args": {
@@ -29,15 +31,15 @@
 		"nopeslide.vscode-drawio-plugin-mermaid",
 	],
 	// "onCreateCommand": "update-ca-certificates && bash /tmp/install_talisman.bash && cd /workspace && git submodule update --init --recursive && cd /workspace/docs && git checkout master && cd /workspace/exastro-it-automation-docs/ && git checkout main cd /workspace/",
-	"onCreateCommand": "update-ca-certificates && cd /workspace && git submodule update --init --recursive && cd /workspace/docs && git checkout master && cd /workspace/exastro-it-automation-docs/ && git checkout main && cd /workspace/",
-	"postCreateCommand": "sphinx-autobuild /workspace/exastro-it-automation-docs/documentation /workspace/exastro-it-automation-docs/documentation/html",
+	"onCreateCommand": "sudo update-ca-certificates && cd /workspace && git submodule update --init --recursive && cd /workspace/docs && git checkout master && cd /workspace/exastro-it-automation-docs/ && git checkout main && cd /workspace/",
+	"postCreateCommand": "python -msphinx_autobuild /workspace/exastro-it-automation-docs/documentation /workspace/exastro-it-automation-docs/documentation/html",
 	"workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
 	"mounts": [
-		"source=${localEnv:TALISMAN_HOME},target=/root/.talisman/bin,type=bind",
+		"source=${localEnv:TALISMAN_HOME},target=/home/sphinx/.talisman/bin,type=bind",
 		"source=/mnt/mainte/talisman,target=/mnt/mainte/talisman,type=bind",
-		// "source=/root/.netrc,target=/root/.netrc,type=bind",
-		"source=${localEnv:HOME}/.gitconfig,target=/root/.gitconfig,type=bind",
-		"source=/usr/share/pki/ca-trust-source/anchors/ZscalerRootCertificate.cer,target=/usr/local/share/ca-certificates/ZscalerRootCertificate.crt,type=bind",
+		"source=${localEnv:HOME}/.netrc,target=/home/sphinx/.netrc,type=bind",
+		"source=${localEnv:HOME}/.gitconfig,target=/home/sphinx/.gitconfig,type=bind",
+		"source=/mnt/mainte/certification/ZscalerRootCertificate.crt,target=/usr/local/share/ca-certificates/ZscalerRootCertificate.crt,type=bind",
 	],
 	"workspaceFolder": "/workspace",
 	"containerEnv": {
