@@ -1,5 +1,9 @@
 #!/bin/sh
 
+if [ -f /tmp/install_talisman.bash ]; then
+  bash /tmp/install_talisman.bash
+fi
+
 if [ -z "$(ls /workspace/docs)" ] && [ -z "$(ls /workspace/exastro-it-automation-docs)" ]; then
   sudo update-ca-certificates
 
