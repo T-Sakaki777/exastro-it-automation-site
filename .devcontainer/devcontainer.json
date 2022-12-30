@@ -31,8 +31,8 @@
 		"nopeslide.vscode-drawio-plugin-mermaid",
 	],
 	// "onCreateCommand": "update-ca-certificates && bash /tmp/install_talisman.bash && cd /workspace && git submodule update --init --recursive && cd /workspace/docs && git checkout master && cd /workspace/exastro-it-automation-docs/ && git checkout main cd /workspace/",
-	"onCreateCommand": "sudo update-ca-certificates && cd /workspace && git submodule update --init --recursive && cd /workspace/docs && git checkout master && cd /workspace/exastro-it-automation-docs/ && git checkout main && cd /workspace/",
-	"postCreateCommand": "python -msphinx_autobuild /workspace/exastro-it-automation-docs/documentation /workspace/exastro-it-automation-docs/documentation/html",
+	"onCreateCommand": "/workspace/init.sh",
+	"postCreateCommand": "/workspace/start-autobuild.sh",
 	"workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
 	"mounts": [
 		"source=${localEnv:TALISMAN_HOME},target=/home/sphinx/.talisman/bin,type=bind",
